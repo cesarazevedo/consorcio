@@ -597,14 +597,14 @@
                     <div class="ring-label">concluído</div>
                 </div>
             </div>
-            <div class="ring-sub">49 de 99 parcelas pagas</div>
+            <div class="ring-sub">50 de 99 parcelas pagas</div>
         </div>
 
         <div class="hero-stats">
             <div class="stat-card animate-in">
                 <div class="stat-icon">&#128176;</div>
                 <div class="stat-label">Total Pago</div>
-                <div class="stat-value text-success">R$ 20.313</div>
+                <div class="stat-value text-success">R$ 20.798</div>
                 <div class="stat-detail">Fundo comum + taxas + seguro</div>
             </div>
             <div class="stat-card animate-in">
@@ -622,8 +622,8 @@
             <div class="stat-card animate-in">
                 <div class="stat-icon">&#9203;</div>
                 <div class="stat-label">Restam</div>
-                <div class="stat-value text-warning">50 parcelas</div>
-                <div class="stat-detail">R$ 22.961 a pagar</div>
+                <div class="stat-value text-warning">49 parcelas</div>
+                <div class="stat-detail">R$ 22.476 a pagar</div>
             </div>
         </div>
     </div>
@@ -633,7 +633,7 @@
         <h3>Linha do Tempo</h3>
         <div class="timeline-bar-container">
             <div class="timeline-bar-fill" id="timelineBar">
-                <span>49/99</span>
+                <span>50/99</span>
             </div>
         </div>
         <div class="timeline-labels">
@@ -686,19 +686,19 @@
     <div class="summary-grid">
         <div class="summary-card animate-in">
             <h3>Valores Pagos</h3>
-            <div class="summary-row"><span class="label">Fundo Comum</span><span class="value success">R$ 15.471,25</span></div>
-            <div class="summary-row"><span class="label">Taxa Administração</span><span class="value">R$ 3.523,70</span></div>
-            <div class="summary-row"><span class="label">Fundo Reserva</span><span class="value">R$ 161,09</span></div>
-            <div class="summary-row"><span class="label">Seguro</span><span class="value">R$ 1.156,98</span></div>
-            <div class="summary-row"><span class="label">Total Pago</span><span class="value success">R$ 20.313,02</span></div>
+            <div class="summary-row"><span class="label">Fundo Comum</span><span class="value success">R$ 15.875,22</span></div>
+            <div class="summary-row"><span class="label">Taxa Administração</span><span class="value">R$ 3.575,03</span></div>
+            <div class="summary-row"><span class="label">Fundo Reserva</span><span class="value">R$ 164,95</span></div>
+            <div class="summary-row"><span class="label">Seguro</span><span class="value">R$ 1.183,13</span></div>
+            <div class="summary-row"><span class="label">Total Pago</span><span class="value success">R$ 20.798,33</span></div>
         </div>
         <div class="summary-card animate-in">
             <h3>Valores a Pagar</h3>
-            <div class="summary-row"><span class="label">Fundo Comum</span><span class="value warning">R$ 19.050,89</span></div>
-            <div class="summary-row"><span class="label">Taxa Administração</span><span class="value">R$ 2.420,85</span></div>
-            <div class="summary-row"><span class="label">Fundo Reserva</span><span class="value">R$ 182,12</span></div>
-            <div class="summary-row"><span class="label">Seguro</span><span class="value">R$ 1.307,50</span></div>
-            <div class="summary-row"><span class="label">Total a Pagar</span><span class="value warning">R$ 22.961,36</span></div>
+            <div class="summary-row"><span class="label">Fundo Comum</span><span class="value warning">R$ 18.646,92</span></div>
+            <div class="summary-row"><span class="label">Taxa Administração</span><span class="value">R$ 2.369,52</span></div>
+            <div class="summary-row"><span class="label">Fundo Reserva</span><span class="value">R$ 178,26</span></div>
+            <div class="summary-row"><span class="label">Seguro</span><span class="value">R$ 1.281,35</span></div>
+            <div class="summary-row"><span class="label">Total a Pagar</span><span class="value warning">R$ 22.476,05</span></div>
         </div>
     </div>
 
@@ -787,6 +787,7 @@ const PARCELS = [
     {n:48,asm:'15/12/2025',pago:'03/12/2025',bem:34612.87,valor:440.77,seguro:25.10,pctAcum:45.0502},
     {n:49,asm:'14/01/2026',pago:'05/01/2026',bem:36056.23,valor:459.15,seguro:26.15,pctAcum:46.1068},
     {n:50,asm:'13/02/2026',pago:'03/02/2026',bem:36056.23,valor:459.15,seguro:26.15,pctAcum:47.1634},
+    {n:51,asm:'13/03/2026',pago:'02/03/2026',bem:36056.23,valor:459.15,seguro:26.15,pctAcum:48.2200},
 ];
 
 const NEXT_ASSEMBLIES = [
@@ -805,8 +806,8 @@ const NEXT_ASSEMBLIES = [
 ];
 
 const TOTAL_PARCELS = 99; // parcels 2 to 100
-const PAID_PARCELS = 49;
-const PERCENT_PAID = 47.1634;
+const PAID_PARCELS = 50;
+const PERCENT_PAID = 48.2200;
 const START_DATE = new Date(2022, 0, 3); // 03/01/2022
 
 // ===== HELPERS =====
@@ -827,8 +828,8 @@ function daysBetween(a, b) {
 function setMotivation() {
     const phrases = [
         { phrase: 'Quase na metade! Cada parcela te aproxima do seu carro.', detail: `Faltam apenas ${(50 - PERCENT_PAID).toFixed(1)}% para a metade!` },
-        { phrase: 'Você já pagou quase metade. Isso é determinação!', detail: `R$ 20.313 investidos no seu futuro.` },
-        { phrase: '49 parcelas pagas sem atraso. Consistência é a chave!', detail: 'Histórico impecável de pagamentos.' },
+        { phrase: 'Você já pagou quase metade. Isso é determinação!', detail: `R$ 20.798 investidos no seu futuro.` },
+        { phrase: '50 parcelas pagas sem atraso. Consistência é a chave!', detail: 'Histórico impecável de pagamentos.' },
         { phrase: 'O carro dos sonhos está cada vez mais perto!', detail: `Crédito atual: R$ 36.056,23 - e continua valorizando.` },
         { phrase: 'Mais da metade do caminho já foi percorrida em tempo!', detail: `${Math.floor((new Date() - START_DATE) / (1000*60*60*24*30))} meses de dedicação.` },
     ];
@@ -991,7 +992,7 @@ function renderCharts() {
         data: {
             labels: ['Pago', 'Restante'],
             datasets: [{
-                data: [20313.02, 22961.36],
+                data: [20798.33, 22476.05],
                 backgroundColor: ['#10b981', '#334155'],
                 borderColor: ['#10b981', '#475569'],
                 borderWidth: 2,
@@ -1006,7 +1007,7 @@ function renderCharts() {
                 tooltip: {
                     backgroundColor: '#1e293b', titleColor: '#f1f5f9', bodyColor: '#94a3b8',
                     borderColor: '#334155', borderWidth: 1, padding: 10, cornerRadius: 8,
-                    callbacks: { label: ctx => ` R$ ${formatBRL(ctx.raw)} (${(ctx.raw / (20313.02 + 22961.36) * 100).toFixed(1)}%)` }
+                    callbacks: { label: ctx => ` R$ ${formatBRL(ctx.raw)} (${(ctx.raw / (20798.33 + 22476.05) * 100).toFixed(1)}%)` }
                 }
             }
         }
