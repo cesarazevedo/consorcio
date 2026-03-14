@@ -192,6 +192,33 @@
             margin-top: 15px;
             text-align: center;
         }
+        .dual-metric {
+            width: 240px;
+            margin-top: 16px;
+        }
+        .dual-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.78em;
+        }
+        .dual-label { color: var(--text-dim); }
+        .dual-val { font-weight: 700; font-size: 1.05em; }
+        .dual-bar-bg {
+            height: 6px;
+            background: var(--bg);
+            border-radius: 3px;
+            margin: 5px 0 0;
+            overflow: hidden;
+        }
+        .dual-bar-fill {
+            height: 100%;
+            border-radius: 3px;
+            width: 0%;
+            transition: width 2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .dual-bar-fill.primary { background: linear-gradient(90deg, var(--primary), var(--primary-light)); }
+        .dual-bar-fill.success { background: linear-gradient(90deg, var(--success), var(--success-light)); }
 
         /* HERO STATS */
         .hero-stats {
@@ -594,10 +621,21 @@
                 </svg>
                 <div class="ring-center">
                     <div class="ring-percent" id="ringPercent">0%</div>
-                    <div class="ring-label">concluído</div>
+                    <div class="ring-label">fundo comum</div>
                 </div>
             </div>
-            <div class="ring-sub">50 de 99 parcelas pagas</div>
+            <div class="dual-metric">
+                <div class="dual-row">
+                    <span class="dual-label">Fundo comum acumulado</span>
+                    <span class="dual-val" style="color: var(--primary-light)" id="dualFundoPct"></span>
+                </div>
+                <div class="dual-bar-bg"><div class="dual-bar-fill primary" id="dualFundoBar"></div></div>
+                <div class="dual-row" style="margin-top: 10px">
+                    <span class="dual-label">Parcelas pagas (50/99)</span>
+                    <span class="dual-val" style="color: var(--success-light)" id="dualParcelPct"></span>
+                </div>
+                <div class="dual-bar-bg"><div class="dual-bar-fill success" id="dualParcelBar"></div></div>
+            </div>
         </div>
 
         <div class="hero-stats">
@@ -623,7 +661,7 @@
                 <div class="stat-icon">&#9203;</div>
                 <div class="stat-label">Restam</div>
                 <div class="stat-value text-warning">49 parcelas</div>
-                <div class="stat-detail">R$ 22.476 a pagar</div>
+                <div class="stat-detail">R$ 22.502 a pagar</div>
             </div>
         </div>
     </div>
@@ -787,11 +825,10 @@ const PARCELS = [
     {n:48,asm:'15/12/2025',pago:'03/12/2025',bem:34612.87,valor:440.77,seguro:25.10,pctAcum:45.0502},
     {n:49,asm:'14/01/2026',pago:'05/01/2026',bem:36056.23,valor:459.15,seguro:26.15,pctAcum:46.1068},
     {n:50,asm:'13/02/2026',pago:'03/02/2026',bem:36056.23,valor:459.15,seguro:26.15,pctAcum:47.1634},
-    {n:51,asm:'13/03/2026',pago:'02/03/2026',bem:36056.23,valor:459.15,seguro:26.15,pctAcum:48.2200},
+    {n:51,asm:'13/03/2026',pago:'03/03/2026',bem:36056.23,valor:459.15,seguro:26.15,pctAcum:48.2200},
 ];
 
 const NEXT_ASSEMBLIES = [
-    {n:51, date:'13/03/2026', venc:'09/03/2026'},
     {n:52, date:'14/04/2026', venc:'08/04/2026'},
     {n:53, date:'14/05/2026', venc:'08/05/2026'},
     {n:54, date:'15/06/2026', venc:'08/06/2026'},
@@ -808,6 +845,7 @@ const NEXT_ASSEMBLIES = [
 const TOTAL_PARCELS = 99; // parcels 2 to 100
 const PAID_PARCELS = 50;
 const PERCENT_PAID = 48.2200;
+const PERCENT_PARCELS = parseFloat((PAID_PARCELS / TOTAL_PARCELS * 100).toFixed(4));
 const START_DATE = new Date(2022, 0, 3); // 03/01/2022
 
 // ===== HELPERS =====
@@ -1080,9 +1118,20 @@ function renderPaymentTable() {
     tbody.innerHTML = html;
 }
 
+// ===== DUAL METRICS =====
+function renderDualMetrics() {
+    document.getElementById('dualFundoPct').textContent = PERCENT_PAID.toFixed(1) + '%';
+    document.getElementById('dualParcelPct').textContent = PERCENT_PARCELS.toFixed(1) + '%';
+    setTimeout(() => {
+        document.getElementById('dualFundoBar').style.width = PERCENT_PAID + '%';
+        document.getElementById('dualParcelBar').style.width = PERCENT_PARCELS + '%';
+    }, 500);
+}
+
 // ===== INIT =====
 setMotivation();
 animateRing();
+renderDualMetrics();
 renderTimeline();
 renderCountdowns();
 renderCharts();
